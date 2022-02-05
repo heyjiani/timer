@@ -12,35 +12,17 @@ function handleUserInput (key) {
   }
 
   // The user can press b and it should beep right away
-  const bKey = `\u0062`; 
-  if (key === bKey) {
+  if (key === 'b') {
     process.stdout.write('\x07');
   }
 
   // The user can input any number from 1 to 9 and it should
   // immediately output "setting timer for x seconds...", and
-  // beep after that number of seconds has passed
-  const numberKeys = {
-    "\u0031": 1,
-    "\u0032": 2,
-    "\u0033": 3,
-    "\u0034": 4,
-    "\u0035": 5,
-    "\u0036": 6,
-    "\u0037": 7,
-    "\u0038": 8,
-    "\u0039": 9
-  };
-
-  if (Object.keys(numberKeys).includes(key)) {
-    const seconds = numberKeys[key];
-    process.stdout.write(`setting timer for ${seconds} seconds...\n`);
-
+  // beep after that number of seconds has passed  
+  if (key > 0) {
+    process.stdout.write(`setting timer for ${key} seconds...\n`);
     setTimeout(() => {
       process.stdout.write('\x07');
-    }, seconds * 1000)
+    }, key * 1000)
   }
 };
-
-
-
